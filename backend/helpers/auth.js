@@ -4,18 +4,11 @@ const readline   = require('readline');
 const {google}   = require('googleapis');
 
 // If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/presentations.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/presentations'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = 'token.json';
-
-// Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
-  // Authorize a client with credentials, then call the Google Slides API.
-  authorize(JSON.parse(content), listSlides);
-});
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -66,27 +59,5 @@ function getNewToken(oAuth2Client, callback) {
     });
   });
 }
-
-const slides = google.slides('v1');
-
-/**
- * Prints the number of slides and elements in a sample presentation:
- * https://docs.google.com/presentation/d/1EAYk18WDjIG-zp_0vLm3CsfQh_i8eXc67Jo2O9C6Vuc/edit
- * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
- */
-function listSlides(auth) {
-//   const slides = google.slides({version: 'v1', auth});
-  slides.presentations.get({
-    presentationId: '1EAYk18WDjIG-zp_0vLm3CsfQh_i8eXc67Jo2O9C6Vuc',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const length = res.data.slides.length;
-    console.log('The presentation contains %s slides:', length);
-    res.data.slides.map((slide, i) => {
-      console.log(`- Slide #${i + 1} contains ${slide.pageElements.length} elements.`);
-    });
-  });
-}
-
 
 module.exports = {authorize}
