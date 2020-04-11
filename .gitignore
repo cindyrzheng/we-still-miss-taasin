@@ -7,4 +7,5 @@
 /backend/node_modules
 /backend/helpers/credentials.json
 /backend/helpers/token.json
+/backend/.env
 
