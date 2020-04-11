@@ -31,16 +31,4 @@ router.post('/create', async(req, res) => {
     res.send({"status": "success", "payload": "Rushee Saved " + firstName});
 });
 
-async function getRushees(){
-    let docs;
-
-    try {
-        docs = await Rushee.find({}).sort({ year: 1 });
-    } catch (error) {
-        console.log(error);
-    }
-
-    return docs
-};
-
-module.exports = {router, getRushees};
+module.exports = router;
