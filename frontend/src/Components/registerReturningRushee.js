@@ -7,6 +7,8 @@ import Flexbox from 'flexbox-react';
 import { Form, Container, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import ProfileSnapshot from './profileSnapshot.js';
+import axios from 'axios';
+
 const years = [
     { value: 'Freshman', label: 'Freshman' },
     { value: 'Sophomore', label: 'Sophomore' },
@@ -23,12 +25,22 @@ export default class RegisterReturningRushee extends React.Component {
       this.handleSearch = this.handleSearch.bind(this);
     }
 
-
       handleEmailChange(event) {
         this.setState({email: event.target.value});
       }
 
       handleSearch(){
+        axios.get("localhost:3005/rushee/getRushee", {
+          "headers": {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+          "data": {"email": this.state.email}
+        })
+        .then(res => {
+          console.log(res);
+          // update state, res has the user or an error message
+        })
         this.setState({profile:<ProfileSnapshot user = {this.state.user}/>});
       }
 

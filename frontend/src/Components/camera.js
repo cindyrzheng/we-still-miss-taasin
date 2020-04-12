@@ -60,7 +60,10 @@ const camera = function () {
               this.canvas.height = height;
               this.context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
               var data = this.canvas.toDataURL('image/png').replace("image/png", "image/octet-stream"); 
+              
+              // downloads to your computer, replace with post to backend
               window.location.href=data;
+
               var img = this.context.createImageData(this.canvas.width, this.canvas.height);
               for (var i = img.data.length; --i >= 0; )
                 img.data[i] = 0;
@@ -70,6 +73,7 @@ const camera = function () {
                 this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
                 var data = this.canvas.toDataURL('image/png').replace("image/png", "image/octet-stream"); 
                 window.location.href=data;
+                
                 for (var i = img.data.length; --i >= 0; )
                 img.data[i] = 0;
               this.context.putImageData(img, 100, 100);

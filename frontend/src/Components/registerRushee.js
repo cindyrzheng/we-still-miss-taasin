@@ -6,6 +6,8 @@ import camera from './camera.js'
 import Flexbox from 'flexbox-react';
 import { Form, Container, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+
 const years = [
     { value: 'Freshman', label: 'Freshman' },
     { value: 'Sophomore', label: 'Sophomore' },
@@ -44,7 +46,17 @@ export default class RegisterRushee extends React.Component {
   
     handleSubmit(event) {
       camera.vidOff();
-      alert('A Profile was submitted: ' + this.state.name + this.state.major + this.state.year);
+      axios.post("localhost:3005/rushee/create", {
+        "headers": {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        "data":{"firstName": this.state.name, "major": this.state.major, "year": this.state.year, "email": this.state.email}
+      })
+      .then(res => {
+        console.log(res);
+      })
+      // alert('A Profile was submitted: ' + this.state.name + this.state.major + this.state.year);
       this.props.history.replace('/thanks')
       event.preventDefault();
     }
