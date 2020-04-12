@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Container } from 'react-bootstrap';
-import {background} from './Images/space.png'
 import Flexbox from 'flexbox-react';
 import {Link} from 'react-router-dom';
+
 import './styles.css';
+
 export default class WelcomeScreen extends React.Component {
     render() 
     {

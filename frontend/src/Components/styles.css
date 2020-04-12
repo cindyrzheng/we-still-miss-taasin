@@ -1,6 +1,7 @@
 .fullForm{
     flex-direction: row;
 }
+
 .rushPictureContainer{
     flex-direction: row;
     align-items: center;
@@ -21,6 +22,11 @@
 }
 
 .fullscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -28,4 +34,43 @@
     right: 0;
     overflow: auto;
     background: #0A2147; /* Just to visualize the extent */
+    background-image: url('./Images/space.png');
+}
+
+#buttonContainer {
+    width: 50%;
+    height: 15%;
+
+    display: flex;
+    flex-direction: row;
+
+    align-content: center;
+    justify-content: space-evenly;
+
+    flex-wrap: wrap;
+}
+
+.background_solid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background: #0A2147;
+    /* background: url('./Images/space.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+.title {
+    color: #F1B348;
 }

@@ -1,38 +1,50 @@
-import React, { Component } from 'react';
-import { Button, Container } from 'react-bootstrap';
-import {background} from './Images/space.png'
-import Flexbox from 'flexbox-react';
+import React from 'react';
+import { Button} from 'react-bootstrap';
+import logo from './SEP_logo.svg';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+
 import './styles.css';
+
 export default class WelcomeScreen extends React.Component {
 
+  constructor(props){
+    super(props);
 
-    render() 
-    {
-      return (
-        <div className="fullscreen">
-        <h1 style={{color:'#F1B348', justifyContent:'center'}}>
-        SIGMA ETA PI
-        </h1>
-        <h1 style={{color:'#F1B348', justifyContent:'center'}}>
-        FALL 20 RUSH
-        </h1>
-        <Flexbox alignContent="center" flexDirection="row" minHeight="590">
-        <Container style={{ paddingLeft: 20, paddingRight: 10}}>
-        <Link to="/checkin">
-            <Button variant="outline-primary" color="#39BCA9">
-            CHECK IN</Button>
-        </Link>
-        </Container>
-        <Container style={{ paddingLeft: 20, paddingRight: 10}}>
-        <Link to="/returning">
-            <Button variant="outline-primary" color="#39BCA9" >SLIDE DECK</Button>
-            </Link>
-        </Container>
-        </Flexbox>
-        
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event){
+    axios.get("http://localhost:3005/permission", {
+      "headers": {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+    })
+    .then(res => {
+      console.log(res);
+    });
+  }
+
+  render() 
+  {
+    return (
+      <div className="background_solid">
+
+        <img src={logo} alt="Phoenix"/>
+
+        <div id="buttonContainer">
+
+          <Link to="/checkin">
+              <Button variant="outline-primary" color="#39BCA9">CHECK IN</Button>
+          </Link>
+
+
+          <Button variant="outline-primary" color="#39BCA9" onClick={this.handleSubmit}>SLIDE DECK</Button>
+
         </div>
-      );
-    }
 
+      </div>
+    );
+  }
 }
