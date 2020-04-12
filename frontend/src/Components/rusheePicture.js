@@ -17,7 +17,7 @@ export default class RusheePicture extends React.Component {
     render() 
     {
       return (
-        <Flexbox flexDirection="column" height="590" width ="418"> s
+        <Flexbox flexDirection="column" height="590" width ="418"> 
           <Button variant='outline-primary' onClick={this.takePicture}>
              Take Picture
           </Button>

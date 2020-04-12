@@ -11,9 +11,9 @@ export default class ProfileSnapshot extends React.Component {
     return(
         <Card>
         <h2>Name:
-         {this.props.name}</h2>
-        <h2>Major: {this.props.major}</h2>
-        <h2>Year: {this.props.name}</h2>
+         {this.props.user.name}</h2>
+        <h2>Major: {this.props.user.major}</h2>
+        <h2>Year: {this.props.user.name}</h2>
         <Link to="/thanks">
         <Button>CONFIRM ATTENDANCE</Button>
         </Link>

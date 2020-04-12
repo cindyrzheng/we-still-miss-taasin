@@ -3,11 +3,12 @@ import { Button, Container } from 'react-bootstrap';
 import {Background} from './Images/space.png'
 import Flexbox from 'flexbox-react';
 import {Link} from 'react-router-dom';
+import './styles.css';
 export default class CheckIn extends React.Component {
     render() 
     {
       return (
-        <div style={{backgroundImage: `url(${Background})`}}>
+        <div className='fullscreen'>
         <h1 style={{color:'#F1B348', justifyContent:'center'}}>
         SIGMA ETA PI
         </h1>

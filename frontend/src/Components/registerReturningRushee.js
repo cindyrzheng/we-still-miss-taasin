@@ -29,19 +29,14 @@ export default class RegisterReturningRushee extends React.Component {
       }
 
       handleSearch(){
-        this.setState({user: this.state.email});
-        if (this.state.use != ' ')
-        {
-            this.state.profile = <ProfileSnapshot user = {this.state.user}/>
-        }
-
+        this.setState({profile:<ProfileSnapshot user = {this.state.user}/>});
       }
 
 
     render() 
     {
       return (
-        <div>
+        <div className='fullscreen'>
         <Flexbox alignContent="center" flexDirection="column">
               <h1 style={{color:'#F1B348', justifyContent:'center'}}>
                   RETURNING RUSHEE 
