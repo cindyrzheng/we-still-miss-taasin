@@ -10,7 +10,7 @@ import axios from 'axios';
 export default class RegisterReturningRushee extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {email:'', user:{name: 'John Smith', email: '', year: 'Other', major: 'Undecided'}, profile:null};
+      this.state = {email:'', user:{name: 'Taasin Saquib', email: 'taasin.saquib@gmail.com', year: '4th', major: 'CSE'}, profile:null};
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handleSearch = this.handleSearch.bind(this);
     }
@@ -21,7 +21,8 @@ export default class RegisterReturningRushee extends React.Component {
 
       handleSearch(event)
       {
-        console.log("searchin");
+        //console.log("searchin");        
+        this.setState({profile:<ProfileSnapshot user = {this.state.user}/>});
         axios.get("localhost:3005/rushee/getRushee", {
           "headers": {
             'Content-Type': 'application/json',
@@ -32,15 +33,15 @@ export default class RegisterReturningRushee extends React.Component {
         .then(res => {
           console.log(res);
           res = JSON.parse(res);
-          if(res.Status !== "Error")
+        });
+        event.preventDefault();
+        /*if(res.Status !== "Error")
           {
             this.setState({user:res});
             this.setState({profile:<ProfileSnapshot user = {this.state.user}/>});
           }
           else
-          this.setState({profile:<ErrorProfile/>});
-        });
-        event.preventDefault();
+          this.setState({profile:<ErrorProfile/>});*/
       }
 
 
