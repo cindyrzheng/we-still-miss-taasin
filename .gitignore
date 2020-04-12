@@ -1,4 +1,10 @@
-  
-/frontend/node_modules
-/backend/node_modules
 .DS_Store
+
+# Frontend
+/frontend/node_modules
+
+# Backend
+/backend/node_modules
+/backend/helpers/credentials.json
+/backend/helpers/token.json
+
