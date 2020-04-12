@@ -1,9 +1,6 @@
 const express  = require('express');
 const mongoose = require('mongoose');
 const {google} = require('googleapis');
-// const urljoin  = require('url-join');
-// const axios    = require('axios');
-// const fs       = require('fs');
 
 const auth  = require('./auth');
 
@@ -20,7 +17,7 @@ async function getRushees(){
     let docs;
 
     try {
-        docs = await Rushee.find({}).sort({ year: 1 });
+        docs = await Rushee.find({}).sort({ year: -1 });
     } catch (error) {
         console.log(error);
     }
@@ -90,40 +87,43 @@ function createSlideJSON(licenseData, index) {
       // Inserts the license name, percent, and count in the title
       insertText: {
         objectId: `${ID_TITLE_SLIDE_TITLE}_${index}`,
-        text: `#${index + 1} ${licenseData.firstName}  — ~${licenseData.lastName})`
+        text: `${licenseData.firstName} ${licenseData.lastName}`
       }
     }, {
       // Inserts the license in the text body paragraph
       insertText: {
         objectId: `${ID_TITLE_SLIDE_BODY}_${index}`,
-        text: licenseData.license
+        text: licenseData.major
       }
-    }, {
-      // Formats the slide paragraph's font
-      updateParagraphStyle: {
-        objectId: `${ID_TITLE_SLIDE_BODY}_${index}`,
-        fields: '*',
-        style: {
-          lineSpacing: 10,
-          spaceAbove: {magnitude: 0, unit: 'PT'},
-          spaceBelow: {magnitude: 0, unit: 'PT'},
-        }
-      }
-    }, {
-      // Formats the slide text style
-      updateTextStyle: {
-        objectId: `${ID_TITLE_SLIDE_BODY}_${index}`,
-        style: {
-          bold: true,
-          italic: true,
-          fontSize: {
-            magnitude: 10,
-            unit: 'PT'
-          }
-        },
-        fields: '*',
-      }
-    }];
+    }, 
+    // {
+    //   // Formats the slide paragraph's font
+    //   updateParagraphStyle: {
+    //     objectId: `${ID_TITLE_SLIDE_BODY}_${index}`,
+    //     fields: '*',
+    //     style: {
+    //       lineSpacing: 10,
+    //       spaceAbove: {magnitude: 0, unit: 'PT'},
+    //       spaceBelow: {magnitude: 0, unit: 'PT'},
+    //     }
+    //   }
+    // }, 
+    // {
+    //   // Formats the slide text style
+    //   updateTextStyle: {
+    //     objectId: `${ID_TITLE_SLIDE_BODY}_${index}`,
+    //     style: {
+    //       bold: true,
+    //       italic: true,
+    //       fontSize: {
+    //         magnitude: 10,
+    //         unit: 'PT'
+    //       }
+    //     },
+    //     fields: '*',
+    //   }
+    // }
+    ];
 }
 
 const SLIDE_TITLE_TEXT = 'Open Source Licenses Analysis';

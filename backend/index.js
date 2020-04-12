@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
       return;
   }
 
-  app.listen(process.env.PORT || 3000, () => {
+  app.listen(process.env.PORT || 3005, () => {
     console.log("Server up!");
   });
 })();
