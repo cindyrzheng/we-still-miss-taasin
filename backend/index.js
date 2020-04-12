@@ -4,6 +4,7 @@ const express    = require('express');
 const bodyParser = require('body-parser');
 const cors       = require('cors');
 const fs         = require('fs');
+const openurl    = require('openurl');
 
 const db    = require('./helpers/db');
 // const auth  = require('./helpers/auth');
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //  }));
 
 app.get('/permission', (req, res) => {
+  openurl.open(auth.url);
   res.send(auth.url);
 });
 
