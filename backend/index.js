@@ -4,7 +4,7 @@ const express    = require('express');
 const bodyParser = require('body-parser');
 const cors       = require('cors');
 const fs         = require('fs');
-const openurl    = require('openurl');
+var opener       = require("opener");
 
 const db    = require('./helpers/db');
 // const auth  = require('./helpers/auth');
@@ -28,8 +28,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //  }));
 
 app.get('/permission', (req, res) => {
-  openurl.open(auth.url);
-  res.send(auth.url);
+  try {
+    opener(auth.url);
+    res.send(auth.url);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.get('/oauth', async(req, res) => {
@@ -37,7 +41,7 @@ app.get('/oauth', async(req, res) => {
   const {tokens} = await auth.oauth2Client.getToken(req.query.code)
   auth.oauth2Client.setCredentials(tokens);
 
-  res.send("Authorized!");
+  res.sendFile(__dirname + '/close.html');
 });
 
 // endpoints related to Slides

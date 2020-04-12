@@ -3,8 +3,7 @@ const camera = function () {
     let height = 0;
     
     const createObjects = function () {
-    
-    
+
         const video = document.createElement('video');
         video.id = 'video';
         video.width = width;
@@ -17,6 +16,8 @@ const camera = function () {
         canvas.width = width;
         canvas.width = height;
         document.body.appendChild(canvas);
+
+        console.log("hey");
     }
     
     
@@ -44,10 +45,8 @@ const camera = function () {
                         video.play();
                     });
                 })(this.video)
-    
             }
         },
-    
     
         takeSnapshot: function () {
             this.context.drawImage(this.video, 0,0, width, height);

@@ -1,0 +1,24 @@
+version: '3'
+services:
+    server:
+        container_name: "sep_backend"
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        ports:
+            - "3005:3005"
+        volumes:
+            - ./backend:/usr/src/sep_backend
+        command: npm run dev
+
+    client:
+        container_name: "sep_frontend"
+        build: 
+            context: ./frontend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./frontend:/usr/src/sep_frontend
+            - ./usr/src/sep_frontend/node_modules
+        command: npm run start

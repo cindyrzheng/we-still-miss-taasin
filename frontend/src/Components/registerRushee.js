@@ -82,45 +82,45 @@ export default class RegisterRushee extends React.Component {
 
     render() 
     {
-      camera.startCamera();
+      
       return (
         <div className="background_solid">
         <Flexbox alignContent="center" flexDirection="column">
-              <h1 style={{color:'#F1B348', justifyContent:'center'}}>
-                  NEW RUSHEE
-              </h1>
-              <Flexbox alignContent="center" flexDirection="row" minHeight="590" width ="832">
-                <Container style={{ paddingLeft: 20, paddingRight: 10}} >
-              <Flexbox flexDirection="column" minHeight="590">
-                <RusheePicture/>
-              </Flexbox>
+          <h1 style={{color:'#F1B348', justifyContent:'center'}}>
+              NEW RUSHEE
+          </h1>
+            <Flexbox alignContent="center" flexDirection="row" minHeight="590" width ="832">
+              <Container style={{ paddingLeft: 20, paddingRight: 10}} >
+                <Flexbox flexDirection="column" minHeight="590">
+                  {camera.startCamera()}
+                  <RusheePicture/>
+                </Flexbox>
               </Container>
               <Container style={{ paddingLeft: 10, paddingRight: 20 }} >
-              <Flexbox flexDirection="column" minHeight="590" spaceAround="20">
-                <Form>
-                    <Form.Group controlId="formName">
-                      <Form.Label className="title">First Name</Form.Label>
-                      <Form.Control type="text" placeholder="Sigma Eta" onChange={this.handleFirstNameChange} />
-                    </Form.Group>
-                    <Form.Group controlId="formName">
-                      <Form.Label className="title">Last Name</Form.Label>
-                      <Form.Control type="text" placeholder="Pi" onChange={this.handleLastNameChange} />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicEmail">
-                      <Form.Label className="title">Email address</Form.Label>
-                      <Form.Control type="email" placeholder="sigmaEtaPi@sep.com" onChange={this.handleEmailChange}  />
-                    </Form.Group>
-                    <Form.Group controlId="formMajor">
-                      <Form.Label className="title">Major</Form.Label>
-                      <Form.Control type="text" placeholder="Cognitive Science"  onChange={this.handleMajorChange} />
-                    </Form.Group>
-                    <Form.Group controlId='Year'>
-                      <Form.Label className="title">Year</Form.Label>
-                      <Select options={years} onChange={this.handleSelectChange}  defaultValue={years[4]}/>
-                    </Form.Group>
-                </Form>
-              </Flexbox>
-
+                <Flexbox flexDirection="column" minHeight="590" spaceAround="20">
+                    <Form>
+                        <Form.Group controlId="formName">
+                          <Form.Label className="title">First Name</Form.Label>
+                          <Form.Control type="text" placeholder="Sigma Eta" onChange={this.handleFirstNameChange} />
+                        </Form.Group>
+                        <Form.Group controlId="formName">
+                          <Form.Label className="title">Last Name</Form.Label>
+                          <Form.Control type="text" placeholder="Pi" onChange={this.handleLastNameChange} />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicEmail">
+                          <Form.Label className="title">Email address</Form.Label>
+                          <Form.Control type="email" placeholder="sigmaEtaPi@sep.com" onChange={this.handleEmailChange}  />
+                        </Form.Group>
+                        <Form.Group controlId="formMajor">
+                          <Form.Label className="title">Major</Form.Label>
+                          <Form.Control type="text" placeholder="Cognitive Science"  onChange={this.handleMajorChange} />
+                        </Form.Group>
+                        <Form.Group controlId='Year'>
+                          <Form.Label className="title">Year</Form.Label>
+                          <Select options={years} onChange={this.handleSelectChange}  defaultValue={years[4]}/>
+                        </Form.Group>
+                    </Form>
+                </Flexbox>
               </Container>
               </Flexbox>
               </Flexbox>

@@ -22,7 +22,8 @@ export default class WelcomeScreen extends React.Component {
       },
     })
     .then(res => {
-      console.log(res);
+      console.log("Google auth url: " + res.data);
+      window.open(res.data, "_blank") //to open new page
     });
   }
 

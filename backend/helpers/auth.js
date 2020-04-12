@@ -26,6 +26,4 @@ const url = oauth2Client.generateAuthUrl({
     scope: SCOPES
 });
 
-console.log(url);
-
 module.exports = {oauth2Client, url};
