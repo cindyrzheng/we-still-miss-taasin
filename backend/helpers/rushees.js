@@ -31,4 +31,44 @@ router.post('/create', async(req, res) => {
     res.send({"status": "success", "payload": "Rushee Saved " + firstName});
 });
 
+router.get('/getRushee', async(req, res) => {
+    let email = req.query.email;
+
+    let docs;
+    try {
+        docs = await Rushee.find({"email": email});
+    } catch (error) {
+        console.log("Error: " + error.message);
+        res.send({"Status": "Error", "Message": "Rushee not found" + email}); 
+    }
+
+    res.send(docs);
+});
+
+var days = ["Sun", "M", "T", "W", "Th", "F", "Sat"];
+
+router.get('/signIn', async(req, res) => {
+    let email = req.query.email;
+
+    var d = new Date();
+    var day = days[d.getDay()];
+  
+    let doc;
+    try {
+        doc = await Rushee.findOne({"email": email});
+
+        if(doc.present.includes(day))
+            res.send("Already checked in"); 
+
+        doc.present.push(day);
+        doc.save();
+        
+    } catch (error) {
+        console.log("Error: " + error.message);
+        res.send({"Status": "Error", "Message": error.message}); 
+    }
+
+    res.send("Checked In!");
+});
+
 module.exports = router;

@@ -8,7 +8,7 @@ const fs         = require('fs');
 const db    = require('./helpers/db');
 // const auth  = require('./helpers/auth');
 // const slides = require("./helpers/slides");
-const oauth2Client = require('./helpers/retry');
+const auth = require('./helpers/auth');
 
 const app = express();
 app.use(cors());
@@ -20,21 +20,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   },
 //  }));
 
-app.get('/oauth', async(req, res) => {
-  const {tokens} = await oauth2Client.getToken(req.query.code)
-  oauth2Client.setCredentials(tokens);
-  res.send(req.query.code);
+app.get('/permission', (req, res) => {
+  res.send(auth.url);
 });
 
-app.get("/token", (req, res) => {
-  // Load client secrets from a local file.
-  fs.readFile('./helpers/credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err);
-    // Authorize a client with credentials, then call the Google Slides API.
-    auth.authorize(JSON.parse(content));
-  });
+app.get('/oauth', async(req, res) => {
+  // callback to register tokens
+  const {tokens} = await auth.oauth2Client.getToken(req.query.code)
+  auth.oauth2Client.setCredentials(tokens);
 
-  res.send("Token!");
+  res.send("Authorized!");
 });
 
 // endpoints related to Slides

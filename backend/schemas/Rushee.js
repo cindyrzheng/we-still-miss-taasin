@@ -11,4 +11,4 @@ var Rushee = new Schema({
     image    : {data: Buffer, contentType: String}
 });
 
-module.exports = mongoose.model('Rushee', Rushee);
+module.exports = mongoose.model('Rushee', Rushee, 'rushees');
