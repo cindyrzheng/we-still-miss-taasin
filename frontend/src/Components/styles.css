@@ -1,0 +1,31 @@
+.fullForm{
+    flex-direction: row;
+}
+.rushPictureContainer{
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    height: 25px;
+}
+
+.rushInfoContainer{
+    flex-direction: column;
+    width: 590px;
+    height: 418px;
+}
+
+.textFields{
+    flex-direction: column;
+    width: 590px;
+    height: 418px;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: #0A2147; /* Just to visualize the extent */
+}

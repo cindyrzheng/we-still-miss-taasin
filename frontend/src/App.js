@@ -1,25 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import RegisterRushee from "./Components/registerRushee.js";
+import CheckInSuccess from "./Components/checkInSuccess.js"
+import CheckIn from "./Components/checkIn.js";
+import WelcomeScreen from "./Components/welcomeScreen.js";
+import RegisterReturningRushee from "./Components/registerReturningRushee.js";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+            <Switch>
+                <Route path="/" component={WelcomeScreen} exact />
+                <Route path="/checkin" component={CheckIn} />
+                <Route path="/new" component={RegisterRushee} />
+                <Route path="/returning" component={RegisterReturningRushee} />
+                <Route path="/thanks" component={CheckInSuccess} />
+                <Route path="/thanks/checkin" component={CheckIn} />
+            </Switch>
+        </main>
   );
 }
 
