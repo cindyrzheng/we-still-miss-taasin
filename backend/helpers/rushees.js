@@ -11,11 +11,11 @@ const Rushee = mongoose.model('Rushee');
 const router = express.Router();
 
 router.post('/create', async(req, res) => {
-    var firstName = req.body.firstName;
-    var lastName  = req.body.lastName;
-    var email     = req.body.email;
-    var year      = req.body.year;
-    var major     = req.body.major;
+    var firstName = req.body.body.firstName;
+    var lastName  = req.body.body.lastName;
+    var email     = req.body.body.email;
+    var year      = req.body.body.year;
+    var major     = req.body.body.major;
 
     // todo - image, use multer somehow
 
@@ -28,7 +28,7 @@ router.post('/create', async(req, res) => {
     }
 
     console.log("success, Rushee created " + doc);
-    res.send({"status": "success", "payload": "Rushee Saved " + firstName});
+    res.send({"Status": "Success", "payload": "Rushee Saved " + firstName});
 });
 
 router.get('/getRushee', async(req, res) => {
@@ -42,7 +42,7 @@ router.get('/getRushee', async(req, res) => {
         res.send({"Status": "Error", "Message": "Rushee not found" + email}); 
     }
 
-    res.send(docs);
+    res.send({"Status": "Success", "Data": docs});
 });
 
 var days = ["Sun", "M", "T", "W", "Th", "F", "Sat"];
@@ -50,25 +50,35 @@ var days = ["Sun", "M", "T", "W", "Th", "F", "Sat"];
 router.get('/signIn', async(req, res) => {
     let email = req.query.email;
 
+    // todo - verify not null
+    // console.log(email);
+
     var d = new Date();
     var day = days[d.getDay()];
   
     let doc;
     try {
         doc = await Rushee.findOne({"email": email});
-
-        if(doc.present.includes(day))
-            res.send("Already checked in"); 
-
-        doc.present.push(day);
-        doc.save();
-        
     } catch (error) {
         console.log("Error: " + error.message);
         res.send({"Status": "Error", "Message": error.message}); 
     }
 
-    res.send("Checked In!");
+    if(doc == null){
+        res.send({"Status": "Error", "Message": "Couldn't find " + email + " in registered rushees"});
+    }
+
+    if(!doc.present.includes(day)){
+        doc.present.push(day);
+
+        try {
+            await doc.save();
+        } catch (error) {
+            res.send({"Status": "Error", "Message": "Couldn't save updated attendance to db, " + error.message}); 
+        }
+    }
+
+    res.send({"Status": "Success", "Data": "Checked " + email + " In!"});
 });
 
 module.exports = router;
